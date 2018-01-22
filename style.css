@@ -1,0 +1,162 @@
+html, body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.flex {
+	display: flex;
+}
+
+.flex.col {
+	flex-direction: column;
+}
+
+.grow {
+	flex-grow: 1;
+}
+
+.inputSeparator {
+	width: 10px;
+}
+
+#sheet {
+	width: 1080px;
+	position: relative;
+	left: 50%;
+	margin: 50px 0;
+	padding: 80px 20px 50px 20px;
+	transform: translateX(-50%);
+	webkit-box-shadow: 0px 0px 28px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 28px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 28px 0px rgba(0,0,0,0.75);
+}
+
+#sheet input[type="text"],
+#sheet input[type="number"],
+#sheet select {
+	height: 25px;
+}
+
+#sheet select {
+	-webkit-appearance: none;
+	border-radius: 0;
+	height: 31px;
+	width: 50px;
+}
+
+#societyInfos,
+#clientInfos {
+ width: 35%;
+}
+
+#societyInfos input,
+#clientInfos input,
+#clientInfos select {
+	font-size: 1em;
+	margin: 5px 0;
+}
+
+
+#societyInfos input {
+	color: blue;
+}
+
+#societyInfos ::-webkit-input-placeholder {
+	color: rgb(100, 100, 248);
+}
+
+#societyInfos :-moz-placeholder {
+	color: rgb(100, 100, 248);
+}
+
+#societyInfos ::-moz-placeholder {
+	color: rgb(100, 100, 248);
+}
+
+#societyInfos :-ms-input-placeholder {
+	color: rgb(100, 100, 248);
+}
+
+#societyInfos ::-ms-input-placeholder {
+	color: rgb(100, 100, 248);
+}
+
+#societyInfos ::placebolder {
+	color: rgb(100, 100, 248);
+}
+
+#clientInfosLabel {
+	background-color: rgb(173, 173, 173);
+	text-align: center;
+	padding: 10px 0;
+}
+
+#billNumberBanner {
+	color: white;
+	background-color: rgb(0, 102, 153);
+	text-align: center;
+	padding: 10px 0;
+	margin-top: 50px;
+}
+
+#billNumber {
+	width: 200px;
+}
+
+#billInfos {
+	text-align: center;
+	margin-top: 20px;
+}
+
+#billNumberBanner input,
+#billInfos input {
+	font-size: 0.8em;
+}
+
+#billDetail {
+	margin-top: 50px;
+}
+
+table td {
+	padding: 0;
+}
+table input {
+	border: 0;
+	height: 100%;
+	width: calc(100% - 5px);
+	padding: 5px 0 5px 5px;
+	margin: 0;
+	font-size: 0.9em;
+	outline: none;
+	background-color: transparent;
+}
+
+#generateBill {
+	background-color: #C00;
+	color: white;
+	padding: 5px 20px;
+	font-size: 1em;
+	margin-top: 20px;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.amount {
+	padding-left: 5px;
+}

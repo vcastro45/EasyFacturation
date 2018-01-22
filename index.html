@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Easy Facturation</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+	<script src="lib/jquery/jquery-3.3.1.min.js"></script>
+	<script src="lib/jsPDF/dist/jspdf.min.js"></script>
+	<script>
+		var society = {
+			name: "JPCC Carrelage",
+			tel: "06 61 19 58 54",
+			address: "14 rue d'andrezel",
+			zipcode: "77720",
+			city: "Mormant",
+			county: "FRANCE",
+			siret: "83337367300015",
+		};
+
+		var client = {
+			gender: "",
+			name: "",
+			address: "",
+			zipcode: "",
+			city: "",
+			county: "FRANCE",
+		};
+	</script>
+	<script src="main.js"></script>
+</head>
+<body>
+
+	<div id="sheet">
+		<div id="header" class="flex">
+			<div id="societyInfos" class="flex col">
+				<input type="text" name="societyName" id="societyName" placeholder="Nom de la société">
+				<input type="text" name="societyTel" id="societyTel" placeholder="Numéro de Téléphone">
+				<input type="text" name="societyAddress" id="societyAddress" placeholder="Numéro, Adresse">
+				<div class="flex">
+					<input type="text" name="societyZipcode" id="societyZipcode" placeholder="Code Postal">
+					<div class="inputSeparator"></div>
+					<input class="grow" type="text" name="societyCity" id="societyCity" placeholder="Ville">
+				</div>
+				<input type="text" name="societyCountry" id="societyCountry" placeholder="Pays">
+				<input type="text" name="societySiret" id="societySiret" placeholder="Numéro de SIRET">
+			</div>
+
+			<div class="grow"></div>
+
+			<div id="clientInfos" class="flex col">
+				<div id="clientInfosLabel">
+					COORDONNÉES CLIENT
+				</div>
+				<div class="flex">
+					<select name="clientGender" id="clientGender">
+						<option value="M.">M.</option>
+						<option value="Mme">Mme</option>
+						<option value="Mlle">Mlle</option>
+					</select>
+					<div class="inputSeparator"></div>
+					<input class="grow" type="text" name="clientName" id="clientName" placeholder="Nom et Prénom">
+				</div>
+				<input type="text" name="clientAddress" id="clientAddress" placeholder="Numéro, Adresse">
+				<div class="flex">
+					<input type="text" name="clientZipcode" id="clientZipcode" placeholder="Code Postal">
+					<div class="inputSeparator"></div>
+					<input class="grow" type="text" name="clientCity" id="clientCity" placeholder="Ville">
+				</div>
+				<input type="text" name="clientCountry" id="clientCountry" placeholder="Pays" value="FRANCE">
+			</div>
+		</div>
+
+		<div id="billNumberBanner">
+			FACTURE N° <input type="number" name="billNumber" id="billNumber" min="0"> / établie en EUROS
+		</div>
+
+		<div id="billInfos">
+			DATE de FACTURE: <input type="text" name="billDate" id="billDate"> / A Régler avant le : <input type="text" name="billDeadline" id="billDeadline"> / Paiement : <input type="text" name="billPay" id="billPay" value="CB / Chèque">
+		</div>
+
+		<div id="billDetail">
+			<table>
+				<thead>
+					<tr>
+						<th>Référence</th>
+						<th>Description</th>
+						<th>Quantitié</th>
+						<th>Prix Unitaire</th>
+						<th>Montant</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input type="text" value="REF001"></td>
+						<td width="40%"><input type="text" placeholder="Entrez ici votre description de produit"></td>
+						<td><input type="number" value="1" min="0" class="quantity"></td>
+						<td><input type="number" value="0" min="0" class="unitprice"></td>
+						<td><div class="amount">0</div></td>
+					</tr>
+					<tr>
+						<td><input type="text" value="REF002"></td>
+						<td width="40%"><input type="text" placeholder="Entrez ici votre description de produit"></td>
+						<td><input type="number" value="1" min="0" class="quantity"></td>
+						<td><input type="number" value="0" min="0" class="unitprice"></td>
+						<td><div class="amount">0</div></td>
+					</tr>
+					<tr>
+						<td><input type="text" value="REF003"></td>
+						<td width="40%"><input type="text" placeholder="Entrez ici votre description de produit"></td>
+						<td><input type="number" value="1" min="0" class="quantity"></td>
+						<td><input type="number" value="0" min="0" class="unitprice"></td>
+						<td><div class="amount">0</div></td>
+					</tr>
+					<tr>
+						<td><input type="text" value="REF004"></td>
+						<td width="40%"><input type="text" placeholder="Entrez ici votre description de produit"></td>
+						<td><input type="number" value="1" min="0" class="quantity"></td>
+						<td><input type="number" value="0" min="0" class="unitprice"></td>
+						<td><div class="amount">0</div></td>
+					</tr>
+					<tr>
+						<td><input type="text" value="REF005"></td>
+						<td width="40%"><input type="text" placeholder="Entrez ici votre description de produit"></td>
+						<td><input type="number" value="1" min="0" class="quantity"></td>
+						<td><input type="number" value="0" min="0" class="unitprice"></td>
+						<td><div class="amount">0</div></td>
+					</tr>
+					<tr>
+						<td><input type="text" value="REF006"></td>
+						<td width="40%"><input type="text" placeholder="Entrez ici votre description de produit"></td>
+						<td><input type="number" value="1" min="0" class="quantity"></td>
+						<td><input type="number" value="0" min="0" class="unitprice"></td>
+						<td><div class="amount">0</div></td>
+					</tr>
+					<tr>
+						<td><input type="text" value="REF007"></td>
+						<td width="40%"><input type="text" placeholder="Entrez ici votre description de produit"></td>
+						<td><input type="number" value="1" min="0" class="quantity"></td>
+						<td><input type="number" value="0" min="0" class="unitprice"></td>
+						<td><div class="amount">0</div></td>
+					</tr>
+					<tr>
+						<td><input type="text" value="REF008"></td>
+						<td width="40%"><input type="text" placeholder="Entrez ici votre description de produit"></td>
+						<td><input type="number" value="1" min="0" class="quantity"></td>
+						<td><input type="number" value="0" min="0" class="unitprice"></td>
+						<td><div class="amount">0</div></td>
+					</tr>
+					<tr>
+						<td><input type="text" value="REF009"></td>
+						<td width="40%"><input type="text" placeholder="Entrez ici votre description de produit"></td>
+						<td><input type="number" value="1" min="0" class="quantity"></td>
+						<td><input type="number" value="0" min="0" class="unitprice"></td>
+						<td><div class="amount">0</div></td>
+					</tr>
+					<tr>
+						<td><input type="text" value="REF010"></td>
+						<td width="40%"><input type="text" placeholder="Entrez ici votre description de produit"></td>
+						<td><input type="number" value="1" min="0" class="quantity"></td>
+						<td><input type="number" value="0" min="0" class="unitprice"></td>
+						<td><div class="amount">0</div></td>
+					</tr>
+					<tr style="background-color:initial;">
+						<td colspan="2" style="border: solid 1px transparent;"></td>
+						<td style="border: solid 1px transparent;border-right:solid 1px #dddddd"></td>
+						<td style="font-weight: bold; text-align:center;">Déjà Payé</td>
+						<td><input type="number" value="0" min="0" name="alreadyPaid" id="alreadyPaid"></td>
+					</tr>
+					<tr style="background-color:initial;">
+						<td colspan="2" style="border: solid 1px transparent;"></td>
+						<td style="border: solid 1px transparent;border-right:solid 1px #dddddd"></td>
+						<td style="font-weight: bold; text-align:center;">Total à Payer</td>
+						<td><input type="number" value="0" min="0" name="total" id="total" readonly></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<button id="generateBill">Générer la facture</button>
+	</div>
+
+</body>
+</html>
